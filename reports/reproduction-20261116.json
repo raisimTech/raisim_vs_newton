@@ -439,7 +439,7 @@
     ]
   },
   "tested_linux_compiler": "Clang 20.1.8, Release, x86-64-v3",
-  "contract_tests_passed": 17,
+  "contract_tests_passed": 18,
   "automatic_public_sdk_download_verified": true,
   "private_sdk_headers_or_source_required": false,
   "cpu_only_stdlib_run_verified": true,

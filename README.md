@@ -34,7 +34,7 @@ CMake sparse-clones the pinned public SDK into `build/_deps/raisim2Lib`, then
 configures it with examples, Python bindings and documentation disabled. The SDK
 selects and downloads its platform's prebuilt libraries. All downloads remain in
 the ignored build directory. Models are prepared from its public `rsc` assets.
-The default SDK revision is pinned in CMake; changing it may change simulation results. Explicit local SDK checkouts record their actual commit and tracked dirty status, rather than claiming the default pin.
+The default SDK revision is pinned in CMake; changing it may change simulation results. Explicit local SDK checkouts record their actual commit and tracked dirty status, rather than claiming the default pin. Runs require a clean SDK checkout matching the configured commit; reconfigure and rebuild after changing it.
 
 To reuse your public SDK checkout instead:
 

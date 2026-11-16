@@ -129,6 +129,11 @@ def main():
         parser.error("GPU memory limit must be positive")
     cpu_price, gpu_price = prompt_prices(args.cpu_price, args.gpu_price)
     paths = json.loads((args.build / f"benchmark_paths_{args.config}.json").read_text())
+    sdk = Path(paths["sdk"])
+    actual_revision = subprocess.check_output(["git", "-C", str(sdk), "rev-parse", "HEAD"], text=True).strip()
+    actual_dirty = bool(subprocess.check_output(["git", "-C", str(sdk), "status", "--porcelain", "--untracked-files=no"], text=True).strip())
+    if actual_revision != paths["sdk_revision"] or actual_dirty or paths.get("sdk_dirty"):
+        parser.error("SDK must be clean and match configuration; restore it, reconfigure and rebuild")
     if args.output.exists() and any(args.output.iterdir()):
         parser.error("Output directory is not empty; choose a new --output directory")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -139,7 +144,7 @@ def main():
                 "sdk_dirty": paths.get("sdk_dirty"), "driver_sha256": hashlib.sha256(Path(paths["cpu"]).read_bytes()).hexdigest()}
     prefix = Path(paths["sdk_prefix"])
     metadata["sdk_library_sha256"] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in (prefix / "lib").glob("*raisim*") if p.is_file() and not p.is_symlink()}
+        for directory in ("lib", "bin") for p in (prefix / directory).glob("*raisim*") if p.is_file() and not p.is_symlink()}
     metadata["sdk_version"] = next((line.split()[-1].rstrip(")") for line in
         (Path(paths["sdk"]) / "CMakeLists.txt").read_text().splitlines()
         if line.startswith("set(_raisim_expected_version ")), "unknown")

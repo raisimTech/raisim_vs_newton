@@ -58,7 +58,7 @@ Divide FPS and FPS/USD by ten for control transitions/s and transitions/s/USD.
 - Clean Python environment installed Newton from the pinned public archive.
 - The complete published profile ran serially: ten CPU cases and fifteen GPU cases.
 - Both the launcher and native program ask CPU/GPU prices; unattended prices work too.
-- Seventeen contract/integration tests passed, including golden actions, invalid prices,
+- Eighteen contract/integration tests passed, including golden actions, invalid prices,
   native prompts, even-sample median, duplicate comparison cases and CPU-only metadata.
 - Standard Python CPU-only runs passed without Newton, NumPy or USD Python packages.
 - A local-SDK configuration recorded its actual commit rather than an unrelated requested pin.

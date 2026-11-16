@@ -19,6 +19,23 @@ from scripts.prepare_assets import rotation, mv, multiply
 
 
 class BenchmarkContracts(unittest.TestCase):
+    def test_changed_sdk_is_rejected_before_preparing_assets(self):
+        from benchmark import main
+        with tempfile.TemporaryDirectory() as folder:
+            build = Path(folder)
+            (build/'benchmark_paths_Release.json').write_text(json.dumps(
+                {'sdk': folder, 'sdk_revision': 'configured', 'sdk_dirty': False}))
+            for revision, dirty in [('changed', ''), ('configured', ' M CMakeLists.txt')]:
+                with mock.patch.object(sys, 'argv', ['benchmark.py', '--build', folder,
+                        '--cpu-price', '100', '--gpu-price', '200']), \
+                     mock.patch('benchmark.subprocess.check_output', side_effect=[revision, dirty]), \
+                     mock.patch('benchmark.prepare') as prepare, \
+                     mock.patch('sys.stderr'):
+                    with self.assertRaises(SystemExit) as error:
+                        main()
+                    self.assertEqual(error.exception.code, 2)
+                    prepare.assert_not_called()
+
     def test_prices_reject_invalid_values(self):
         for text in ('0','-1','nan','inf','-inf','1 USD',''):
             with self.subTest(text=text), self.assertRaises(ValueError):
