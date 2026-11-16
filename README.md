@@ -172,3 +172,93 @@ Contract tests cover price validation, FPS/USD arithmetic, deterministic action
 values, CLI errors, and the public-dependency boundary. Actual simulation smoke
 runs require your activation key; GPU runs additionally require CUDA. A new SDK
 release need not reproduce older development-build performance numbers.
+
+## Randomized manipulation scaling
+
+The separate driver uses the public **Kinova arm + Robotiq 2F-85 mimic**
+pick-and-place example. Build the new `manipulation_benchmark` target with the
+same CMake commands above, then run:
+
+```sh
+python manipulation.py --worlds 1,16,64,256,1024 --cpu-price 339.99 --gpu-price 899.99 --output results/manipulation
+```
+
+RaiSim advances independent worlds using **30 persistent CPU workers** by
+default, capped by the number of worlds. Override this with `--threads N`.
+Workers own disjoint worlds and synchronize only at trial boundaries; thread
+creation is excluded from timing. Worlds are statically divided between workers,
+which are not pinned; uneven partitions, shape costs and mixed CPU core speeds
+can limit utilization. Available CPU affinity and requested worker count are
+recorded in provenance. Thirty workers are retained even on machines with
+fewer than thirty available CPUs. Newton batches
+those worlds on CUDA using `SolverMuJoCo` and the **Newton collision pipeline**;
+its body-variant API supports different primitive types in one batch with that
+pipeline. This differs from the native MuJoCo contacts used by the older benchmarks.
+There is no CPU substitution when CUDA is unavailable.
+
+Each world has one 100 g object: a seeded box, sphere, or vertical cylinder,
+with independently randomized dimensions (36–44 mm diameter/box sides/cylinder
+height). Geometry stays fixed for that world across resets. Object yaw and pickup
+position (±2 mm) change on each reset. The six arm joints and the single gripper
+driver use the example's PD gains; all five mimic followers remain passive.
+Self-collision is disabled in both engines. The table and ground collide normally.
+
+The 21.5 s scripted cycle approaches, closes, lifts, transports, releases and
+returns using the example's joint poses and smooth trajectory. Per-world delays
+of 0–1 s and reset periods of 23–26 s desynchronize episodes. Independent, uniform
+**±0.25 Nm additive gripper torque** changes every ten 1 ms physics steps. Both engines use one integration step
+per frame, so `aggregate_fps` and `solver_steps_per_second` are equal. This
+perturbs applied grip torque rather than only the position target. The robot and
+object states and solver warm starts reset independently per world. Both engines
+use the same seed, object specifications, targets, perturbations and reset schedule.
+RaiSim uses FP64 physics and Newton FP32, so trajectories and grasp outcomes differ.
+Both use circular/elliptic friction cones and matched sliding friction pairs
+(pad/object 1.0, arm/object 0.5, table/object and ground/object 0.8).
+Contact and constraint algorithms still differ between engines. RaiSim enforces
+the model's joint velocity limits (15 rad/s arm, 2 rad/s fingers);
+SolverMuJoCo does not implement those limits. They are preserved in the XML,
+and the comparison includes this solver difference. Newton uses zero
+contact gap and a stiff mimic equality (solref [0.002, 1], solimp
+[0.9999, 0.99999, 0.00001, 0.5, 2]).
+
+Use `--timing-only` to report throughput without prompting for hardware prices.
+Default trials simulate 30 s per world and repeat three times after a short
+untimed warmup. FPS uses the median trial time. Timed work includes control
+updates, force noise, collisions, physics and asynchronous episode resets. Model
+loading, compilation, rendering and the separate diagnostic replay are excluded.
+The `--steps` count refers to 1 ms frames. Short `--steps` runs are functional checks and may never reach a grasp or reset.
+
+JSON/CSV and per-case logs include raw times, torque checksums, reset counts,
+maximum mimic error, object contact, bilateral grasp and lifted samples. Validation
+rejects nonfinite states, Newton overflow, mimic errors above 0.01 rad and full
+runs without robot/object contacts, bilateral grasps or lifts. These gates apply
+to the batch: they do not require every world to grasp or lift successfully.
+Grasp/lift counts are diagnostics, not successful-placement guarantees.
+The overflow observable includes pipeline buffer truncation and MuJoCo contact
+capacity as well as internal solver overflow. Provenance records
+the pinned SDK, source and trajectory hashes, executable hash, packages and hardware.
+Visual elements are removed; primitive collision dimensions, inertias and mimic
+tags are retained, alongside both original BSD licenses. Capsule `length` is also
+written as `height`: Newton's importer requires that spelling and otherwise
+silently creates a 1 m capsule. This preserves equal arm geometry in both engines. Asset extraction
+may fetch missing Git objects from the pinned sparse SDK checkout.
+
+```sh
+# CPU-only sweep; Newton packages are unnecessary.
+python manipulation.py --backend raisim --worlds 1,16,64 --output results/manipulation-cpu
+# Optional licensed integration test after a run prepared its assets.
+MANIPULATION_CPU="$PWD/build/bin/manipulation_benchmark" \
+MANIPULATION_ASSETS="$PWD/results/manipulation/assets" \
+ctest --test-dir build -j12 --output-on-failure
+```
+
+The optional CUDA regression deliberately limits Newton to one contact per world
+and checks that truncated contacts fail validation:
+
+```sh
+MANIPULATION_GPU_SMOKE=1 MANIPULATION_ASSETS="$PWD/results/manipulation/assets" \
+python -B -m unittest discover -s tests -p test_manipulation.py -v
+```
+
+The [30-worker scaling report](reports/manipulation-30-threads-20261117.md) compares
+the new default with the previous one-thread measurements.

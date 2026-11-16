@@ -24,3 +24,13 @@ The benchmark drivers are MIT-licensed code in this repository. The reference
 measurements in `reports/published_reference.json` contain numerical data extracted
 from the public benchmark page, with source URLs and retrieval date. They are
 historical observations, not expected exact wall-clock timings on other builds.
+
+The manipulation driver extracts `rsc/robotiq_2f85/kinova_robotiq.urdf` from the
+pinned public SDK at runtime, retaining its collision/inertial/mimic data and
+removing visual elements and adding the equivalent capsule `height` attribute
+for Newton importer compatibility. Kinova descriptions are Copyright (c) 2017 Kinova
+Robotics inc.; Robotiq descriptions are Copyright (c) 2022 PickNik Robotics.
+Both use BSD 3-Clause; complete licenses accompany the generated assets as
+`kinova-LICENSE` and `robotiq_2f85-LICENSE`. Motion poses and gains follow the
+public SDK's `examples/include/robotiq_pick_and_place.hpp`; simulator integration
+and benchmark control are implemented independently here.
