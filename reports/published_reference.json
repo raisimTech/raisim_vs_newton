@@ -1,0 +1,469 @@
+{
+  "source": "https://raisim.com/sections/BenchmarkNewton.html",
+  "data_source": "https://raisim.com/raisim_newton_random_actions.json",
+  "retrieved": "2026-11-16",
+  "cpu": "Intel Core Ultra 7 265K",
+  "gpu": "NVIDIA RTX 5070",
+  "cpu_price_usd": 339.99,
+  "gpu_price_usd": 899.99,
+  "records": [
+    {
+      "model": "anymal",
+      "backend": "raisim",
+      "worlds": 1,
+      "aggregate_fps": 324490.259873216,
+      "seconds": [
+        0.015259591,
+        0.015515227,
+        0.015753962,
+        0.015363262,
+        0.015446046,
+        0.015408783,
+        0.015264693
+      ],
+      "steps": 5000,
+      "threads": 1,
+      "last_action_checksum": 0.3097619377076626,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.668,
+      "max_loop_gap_m": 0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 1,
+      "aggregate_fps": 3388.2917646873625,
+      "seconds": [
+        1.4756698499550112,
+        1.4885628130286932,
+        1.472241346957162
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": 0.3097619377076626,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.3408000469207764,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "raisim",
+      "worlds": 64,
+      "aggregate_fps": 1904141.58530379,
+      "seconds": [
+        0.16805473,
+        0.167746139,
+        0.169538413
+      ],
+      "steps": 5000,
+      "threads": 16,
+      "last_action_checksum": 0.5260817734524608,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.687675,
+      "max_loop_gap_m": 0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 64,
+      "aggregate_fps": 133512.04370748377,
+      "seconds": [
+        2.395761046966072,
+        2.4076159379910678,
+        2.396787519042846
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": 0.5260817734524608,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.3395438194274902,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "raisim",
+      "worlds": 256,
+      "aggregate_fps": 3581982.24647587,
+      "seconds": [
+        0.392638105,
+        0.357344038,
+        0.353986302
+      ],
+      "steps": 5000,
+      "threads": 20,
+      "last_action_checksum": -0.6393385641276836,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.68148671875,
+      "max_loop_gap_m": 0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 256,
+      "aggregate_fps": 462763.5745932953,
+      "seconds": [
+        2.760688871028833,
+        2.765991254011169,
+        2.7687285709544085
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": -0.6393385641276836,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.3346617221832275,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "raisim",
+      "worlds": 1024,
+      "aggregate_fps": 3558588.97587835,
+      "seconds": [
+        1.418493191,
+        1.438772512,
+        1.454944857
+      ],
+      "steps": 5000,
+      "threads": 20,
+      "last_action_checksum": -18.724901791661978,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.6827376953125,
+      "max_loop_gap_m": 0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 1024,
+      "aggregate_fps": 1436516.5091914656,
+      "seconds": [
+        3.565626818977762,
+        3.564177624997683,
+        3.563041154993698
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": -18.724901791661978,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.3370611667633057,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "raisim",
+      "worlds": 4096,
+      "aggregate_fps": 3687225.2834648,
+      "seconds": [
+        5.574624536,
+        5.554312098,
+        5.503905875
+      ],
+      "steps": 5000,
+      "threads": 20,
+      "last_action_checksum": -39.12926804367453,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.6831203125,
+      "max_loop_gap_m": 0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 4096,
+      "aggregate_fps": 2869820.7845094893,
+      "seconds": [
+        7.136334126000293,
+        7.138271667005029,
+        7.133177151030395
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": -39.12926804367453,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.3361735343933105,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 8192,
+      "aggregate_fps": 3476489.7385543566,
+      "seconds": [
+        11.78199939604383,
+        11.786072633985896,
+        11.778629660024308
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": -46.606342481449246,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.3357326984405518,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 16384,
+      "aggregate_fps": 3721160.0163825685,
+      "seconds": [
+        21.991636494989507,
+        22.01464049902279,
+        22.02442832296947
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": -72.27673350833356,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.335747718811035,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "anymal",
+      "backend": "newton",
+      "worlds": 32768,
+      "aggregate_fps": 3699929.8442611853,
+      "seconds": [
+        44.300773394992575,
+        44.28080599999521,
+        44.28192071104422
+      ],
+      "steps": 5000,
+      "threads": null,
+      "last_action_checksum": -69.2099572038278,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 2.335744619369507,
+      "max_loop_gap_m": 0.0
+    },
+    {
+      "model": "strandbeest",
+      "backend": "raisim",
+      "worlds": 1,
+      "aggregate_fps": 39786.3921653167,
+      "seconds": [
+        0.074478573,
+        0.077314878,
+        0.078376767,
+        0.075402665,
+        0.074710002,
+        0.074189944,
+        0.090826514
+      ],
+      "steps": 3000,
+      "threads": 1,
+      "last_action_checksum": 7.554086208343506,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.949,
+      "max_loop_gap_m": 2.57945403118202e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 1,
+      "aggregate_fps": 2961.8802371269007,
+      "seconds": [
+        1.0190979120088741,
+        1.0082916830433533,
+        1.0128701229696162
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 7.554086208343506,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.7166666388511658,
+      "max_loop_gap_m": 5.0369591917842627e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "raisim",
+      "worlds": 64,
+      "aggregate_fps": 410471.668440535,
+      "seconds": [
+        0.470866517,
+        0.464029791,
+        0.467754573
+      ],
+      "steps": 3000,
+      "threads": 16,
+      "last_action_checksum": 398.42177152633667,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.946817708333333,
+      "max_loop_gap_m": 2.77936030025546e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 64,
+      "aggregate_fps": 109868.12400268174,
+      "seconds": [
+        1.7475496350089088,
+        1.7495655000093393,
+        1.73954560700804
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 398.42177152633667,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.6953437328338623,
+      "max_loop_gap_m": 5.9114143368788064e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "raisim",
+      "worlds": 256,
+      "aggregate_fps": 438328.491895261,
+      "seconds": [
+        1.707290406,
+        1.804952168,
+        1.752110607
+      ],
+      "steps": 3000,
+      "threads": 20,
+      "last_action_checksum": 1603.1147918701172,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.946231770833333,
+      "max_loop_gap_m": 2.85025559837024e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 256,
+      "aggregate_fps": 317352.7071888791,
+      "seconds": [
+        2.4200203199870884,
+        2.4208461210364476,
+        2.4108652970171534
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 1603.1147918701172,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.695102870464325,
+      "max_loop_gap_m": 5.9556085034273565e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "raisim",
+      "worlds": 1024,
+      "aggregate_fps": 479450.206282819,
+      "seconds": [
+        6.550865564,
+        6.364266937,
+        6.407338989
+      ],
+      "steps": 3000,
+      "threads": 20,
+      "last_action_checksum": 6472.443307876587,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.945696614583333,
+      "max_loop_gap_m": 2.9260929303147e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 1024,
+      "aggregate_fps": 535604.4721363622,
+      "seconds": [
+        5.731432248023339,
+        5.750121883000247,
+        5.735575708968099
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 6472.443307876587,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.694265604019165,
+      "max_loop_gap_m": 6.0757938626920804e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "raisim",
+      "worlds": 4096,
+      "aggregate_fps": 499843.568935514,
+      "seconds": [
+        24.583691306,
+        24.721530955,
+        24.573097986
+      ],
+      "steps": 3000,
+      "threads": 20,
+      "last_action_checksum": 25791.418820381165,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.945482584635417,
+      "max_loop_gap_m": 2.93899213663007e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 4096,
+      "aggregate_fps": 649527.942437312,
+      "seconds": [
+        18.88169198000105,
+        18.918354696012102,
+        18.93390097102383
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 25791.418820381165,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.6959747076034546,
+      "max_loop_gap_m": 6.527631194330752e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 8192,
+      "aggregate_fps": 664085.7929073407,
+      "seconds": [
+        36.96799166704295,
+        37.01967168803094,
+        37.007266625005286
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 51495.885961055756,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.696154773235321,
+      "max_loop_gap_m": 7.202917913673446e-05
+    },
+    {
+      "model": "strandbeest",
+      "backend": "newton",
+      "worlds": 16384,
+      "aggregate_fps": 641569.946687704,
+      "seconds": [
+        76.59012429096038,
+        76.61206740397029,
+        76.66957002703566
+      ],
+      "steps": 3000,
+      "threads": null,
+      "last_action_checksum": 103059.58382749557,
+      "action_seed": 20261115,
+      "action_decimation": 10,
+      "mean_contacts_per_world": 0.6961630582809448,
+      "max_loop_gap_m": 6.610369746340439e-05
+    }
+  ]
+}

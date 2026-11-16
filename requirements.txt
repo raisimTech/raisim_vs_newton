@@ -1,0 +1,8 @@
+# Public Newton revision used by the original comparison, with compatible GPU dependencies.
+newton @ https://github.com/newton-physics/newton/archive/c552d3653352a472dcc1f7e74e004aacac202f74.tar.gz
+warp-lang==1.19.0
+mujoco==3.17.0
+mujoco-warp==3.17.0
+numpy==2.5.4
+usd-core==26.11
+newton-usd-schemas==0.7.0

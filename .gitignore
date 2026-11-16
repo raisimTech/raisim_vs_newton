@@ -1,0 +1,10 @@
+/build*/
+/results*/
+/.venv/
+/__pycache__/
+**/__pycache__/
+*.pyc
+*.log
+*.key
+activation.raisim
+.raisim
